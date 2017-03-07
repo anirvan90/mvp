@@ -15,7 +15,9 @@ app.factory('posts', ['$http', function($http) {
     });
   }
   postItems.voteup = function(post) {
-    return $http.put('/posts/'+post._id+'/voteup');
+    return $http.put('/posts/'+post._id+'/voteup').then(function(data){
+      post.votes += 1;
+    });
   }
   return postItems;
 }]);
@@ -32,9 +34,9 @@ app.controller('MainCtrl', [
       var top = $scope.posts.sort(function(a, b){
         return b.votes - a.votes;
       });
-    
      $scope.urlString = top[0].link;
     });
+
     $scope.incrementVotes = function(post) {
       posts.voteup(post);
     }

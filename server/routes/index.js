@@ -37,7 +37,9 @@ router.get('/posts/:post', function(req, res, next, id) {
 
 router.put('/posts/:post/voteup', function(req, res, next) {
   req.post.voteup(function(err, post) {
+    
     if(err) { next(err) }
+    
     res.json(post);
   });
 });
