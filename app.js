@@ -1,14 +1,20 @@
-var app = angular.module('highlightRank', []);
-
+var app = angular.module('highlightRank', ['ngSanitize']);
 app.controller('MainCtrl', [
   '$scope',
-  function($scope) {
+  "$sce",
+  function($scope, $sce) {
+    $scope.trust = function(url){
+      return $sce.trustAsResourceUrl(url);
+    }
     $scope.posts = [
-      {title: 'video1', description: 'something here', votes:1},
-      {title: 'video2', description: 'something here', votes:10},
-      {title: 'video3', description: 'something here', votes:6},
-      {title: 'video4', description: 'something here', votes:4},
-      {title: 'video5', description: 'something here', votes:5}
+      {title: 'Fernando Llorente vs Burnely', link:'https://www.youtube.com/embed/01j08KmeIyw', votes:0},
+      {title: 'Harry Kane vs Everton', link: 'https://www.youtube.com/embed/qVxnYmIitzE', votes:0},
+      {title: 'Leicester vs Hull', link: 'https://www.youtube.com/embed/70PWyDv93Bg', votes:0},
+      {title: 'Zlatan vs EVERYONE!', link: 'https://www.youtube.com/embed/kTI3lNTz4fA', votes:0},
+      {title: 'Sadio Mane vs Arsenal', link: 'https://www.youtube.com/embed/51woOX_Leog', votes:0}
     ];
+    $scope.incrementVotes = function(post) {
+      post.votes += 1;
+    }
   }
 ]);

@@ -1,14 +1,21 @@
 <html>
   <head>
     <title>Highlight Rank</title>
-    <script src="lib/angular/angular.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="app.js"></script>
   </head>
   <body ng-app="highlightRank" ng-controller="MainCtrl">
-    <div ng-repeat="post in posts | orderBy: '-votes'">
-      <span>{{post.votes}}</span>
-      <div>{{post.description}}</div>
-      <div>{{post.title}}</div>
+    <!--<div ng-view>-->
+      <div align="center">
+        <iframe width="700" height="400" ng-src="{{trust(posts[1].link)}}"></iframe>
+      </div>
+      <div ng-repeat="post in posts | orderBy: '-votes'">
+        <div>{{post.title}}</div>
+        <div>{{post.link}}</div>
+        <div ng-click="incrementVotes(post)"> ^^ {{post.votes}}</div>
+        <hr>
+      </div>
     </div>
   </body>
 </html>
