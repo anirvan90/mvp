@@ -20,7 +20,7 @@ router.post('/posts', function(req, res, next) {
   })
 })
 
-router.param('/post', function(req, res, next, id) {
+router.param('post', function(req, res, next, id) {
   var query = Post.findById(id);
   query.exec(function(err, post) {
     if(err) { next(err); }
