@@ -12,8 +12,10 @@ app.factory('posts', ['$http', function($http) {
   postItems.getAll = function() {
     return $http.get('/posts').then(function(data) {
       angular.copy(data, postItems.post);
-      // console.log(postItems.post);
     });
+  }
+  postItems.voteup = function(post) {
+    return $http.put('/posts/'+post._id+'/voteup');
   }
   return postItems;
 }]);
@@ -27,11 +29,14 @@ app.controller('MainCtrl', [
     }
     posts.getAll().then(function() {
       $scope.posts = posts.post.data;
-     $scope.urlString = $scope.posts[0].link;
-      // console.log($scope.posts);
+      var top = $scope.posts.sort(function(a, b){
+        return b.votes - a.votes;
+      });
+    
+     $scope.urlString = top[0].link;
     });
     $scope.incrementVotes = function(post) {
-      post.votes += 1;
+      posts.voteup(post);
     }
     $scope.playVideo = function(post) {
       $scope.urlString = post.link;
