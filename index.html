@@ -3,17 +3,20 @@
     <title>Highlight Rank</title>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="app.js"></script>
   </head>
   <body ng-app="highlightRank" ng-controller="MainCtrl">
-    <!--<div ng-view>-->
       <div align="center">
-        <iframe width="700" height="400" ng-src="{{trust(posts[1].link)}}"></iframe>
+        <iframe width="700" height="400" ng-src="{{trust(posts[0].link)}}"></iframe>
       </div>
       <div ng-repeat="post in posts | orderBy: '-votes'">
         <div>{{post.title}}</div>
-        <div>{{post.link}}</div>
-        <div ng-click="incrementVotes(post)"> ^^ {{post.votes}}</div>
+        <a href="{{post.link}}">Play</a>
+        <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(post)">
+          <div>{{post.votes}}</div>
+        </span>
         <hr>
       </div>
     </div>

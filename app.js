@@ -6,6 +6,7 @@ app.controller('MainCtrl', [
     $scope.trust = function(url){
       return $sce.trustAsResourceUrl(url);
     }
+
     $scope.posts = [
       {title: 'Fernando Llorente vs Burnely', link:'https://www.youtube.com/embed/01j08KmeIyw', votes:0},
       {title: 'Harry Kane vs Everton', link: 'https://www.youtube.com/embed/qVxnYmIitzE', votes:0},
