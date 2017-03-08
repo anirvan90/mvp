@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
     <link rel="stylesheet" type="text/css" href = "styles/styles.css">
     <script src="app.js"></script>
   </head>
@@ -15,8 +16,11 @@
       <div align="center" class="video-frame">
         <iframe width="650" height="350" ng-src="{{trust(urlString)}}"></iframe>
       </div>
+      <select name="weekFilter" ng-model="weekNum" ng-change="selectWeek(weekNum)"
+        ng-options="post as post.week for post in posts | unique:'week'">
+      </select>
       <div class='video-list'>
-        <div class="post" ng-repeat="post in posts | orderBy: '-votes'">
+        <div class="post" ng-repeat="post in posts | filter: filterByWeek | orderBy: '-votes'">
           <div>{{post.title}}</div>
             <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(post)">
               {{post.votes}}

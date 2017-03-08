@@ -1,4 +1,4 @@
-var app = angular.module('highlightRank', ['ngRoute','ngSanitize']);
+var app = angular.module('highlightRank', ['ngRoute','ngSanitize','angular.filter']);
 app.config(function($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'index.html',
@@ -29,6 +29,7 @@ app.controller('MainCtrl', [
     $scope.trust = function(url){
       return $sce.trustAsResourceUrl(url);
     }
+    $scope.weekNum;
     var checkTop = function() {
       var top = $scope.posts.sort(function(a, b){
         return b.votes - a.votes;
@@ -42,7 +43,10 @@ app.controller('MainCtrl', [
       // });
      $scope.urlString = checkTop();
     });
-    
+    $scope.selectWeek = function(week) {
+      // $scope.filteredByWeek = week;
+      console.log($scope.weekNum);
+    }
     $scope.incrementVotes = function(post) {
       $scope.urlString = checkTop();
       posts.voteup(post);

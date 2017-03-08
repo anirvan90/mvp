@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var PostSchema = new mongoose.Schema({
   title: String,
   link: String,
+  week: {type: Number, default:0},
   votes: {type: Number, default:0}
 });
 
