@@ -17,9 +17,13 @@ body {
 
 .video-list {
   overflow: scroll;
-  height: 400px;
+  height: 275px;
 }
 
 .post {
   padding: 10px;
+}
+
+.glyphicon {
+  font-size: 20px;
 }
