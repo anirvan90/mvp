@@ -5,26 +5,28 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <link   rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href = "styles/styles.css">
     <script src="app.js"></script>
   </head>
   <body ng-app="highlightRank" ng-controller="MainCtrl">
       <h1>Top<strong>Goals</strong></h1>
-      <div align="center">
+      <div align="center" class="video-frame">
         <iframe width="700" height="400" ng-src="{{trust(urlString)}}"></iframe>
       </div>
-      <div ng-repeat="post in posts | orderBy: '-votes'">
-        <div>{{post.title}}</div>
-        <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(post)">
-          {{post.votes}}
-        </span>
-        <br>
-        <div>
-        <button ng-click="playVideo(post)">Play</button>
+      <div class='video-list'>
+        <div class="post" ng-repeat="post in posts | orderBy: '-votes'">
+          <div>{{post.title}}</div>
+            <span class="glyphicon glyphicon-thumbs-up" ng-click="incrementVotes(post)">
+              {{post.votes}}
+            </span>
+          <br>
+          <div>
+            <button ng-click="playVideo(post)">Play</button>
+          </div>
+          <hr>
         </div>
-        <hr>
       </div>
-    </div>
   </body>
 </html>

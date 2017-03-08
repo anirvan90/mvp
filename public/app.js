@@ -33,7 +33,7 @@ app.controller('MainCtrl', [
       var top = $scope.posts.sort(function(a, b){
         return b.votes - a.votes;
       })
-      return top[0].link
+      return top[0].link;
     }
     posts.getAll().then(function() {
       $scope.posts = posts.post.data;
