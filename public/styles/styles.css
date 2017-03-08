@@ -11,12 +11,13 @@ body {
   border: 5px;
   padding: 5px;
   display: block;
-  /*position: fixed;*/
 }
+
 .video-list {
   overflow: scroll;
   height: 200px;
 }
+
 .post {
   padding: 10px;
 }
