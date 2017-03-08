@@ -29,15 +29,22 @@ app.controller('MainCtrl', [
     $scope.trust = function(url){
       return $sce.trustAsResourceUrl(url);
     }
-    posts.getAll().then(function() {
-      $scope.posts = posts.post.data;
+    var checkTop = function() {
       var top = $scope.posts.sort(function(a, b){
         return b.votes - a.votes;
-      });
-     $scope.urlString = top[0].link;
+      })
+      return top[0].link
+    }
+    posts.getAll().then(function() {
+      $scope.posts = posts.post.data;
+      // var top = $scope.posts.sort(function(a, b){
+      //   return b.votes - a.votes;
+      // });
+     $scope.urlString = checkTop();
     });
-
+    
     $scope.incrementVotes = function(post) {
+      $scope.urlString = checkTop();
       posts.voteup(post);
     }
     $scope.playVideo = function(post) {
